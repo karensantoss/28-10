@@ -14,6 +14,7 @@ import br.com.model.Autor;
 import br.com.model.Colecao;
 import br.com.model.Editora;
 import br.com.model.Livro;
+import br.com.validador.Validador;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -440,7 +441,10 @@ public class LivrosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txCodigoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       Livro li = new Livro();
+       if(Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!")){
+           
+       
+        Livro li = new Livro();
        li.setTitulo(txTitulo.getText());
        li.setCodigoAcervo(Integer.valueOf(txCodigoAcervo.getText()));
        li.setQuantidadePagina(Integer.valueOf(txQtdPaginas.getText()));
@@ -469,6 +473,7 @@ public class LivrosGUI extends javax.swing.JFrame {
        
        
        dispose();
+       }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
