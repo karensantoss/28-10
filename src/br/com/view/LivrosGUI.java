@@ -441,7 +441,9 @@ public class LivrosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txCodigoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       if(Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!")){
+       if((Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!"))
+               &&(Validador.somenteNumeros(txAno.getText(), "O campo ano aceita somente números"))
+               ){
            
        
         Livro li = new Livro();

@@ -11,6 +11,15 @@ public class Disciplina {
     private int codigo;
     private String nome;
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+    
+    
+   
+
     public int getCodigo() {
         return codigo;
     }

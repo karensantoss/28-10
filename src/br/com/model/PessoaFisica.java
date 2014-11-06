@@ -14,6 +14,7 @@ public abstract class PessoaFisica {
     private String email;
     private Date dataCadastro;
     private Endereco endereco;
+    private String telefone;
 
     public int getCodigo() {
         return codigo;
@@ -86,5 +87,14 @@ public abstract class PessoaFisica {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
     
 }
