@@ -8,6 +8,7 @@ package br.com.view;
 
 import br.com.controller.EditoraController;
 import br.com.model.Editora;
+import br.com.validador.Validador;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -213,7 +214,9 @@ public class EditoraGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-     Editora a = new Editora();
+      if((Validador.validaCampoVazio(txNome.getText(), "Nome não pode ser nulo!"))
+               ){
+        Editora a = new Editora();
      a.setNome(txNome.getText());
      
      if(!txCodigo.getText().equals("")){
@@ -227,7 +230,7 @@ public class EditoraGUI extends javax.swing.JFrame {
      }
      
      dispose();
-     
+      }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed

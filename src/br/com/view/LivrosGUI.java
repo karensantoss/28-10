@@ -443,6 +443,8 @@ public class LivrosGUI extends javax.swing.JFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
        if((Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!"))
                &&(Validador.somenteNumeros(txAno.getText(), "O campo ano aceita somente números"))
+               &&(Validador.somenteNumeros(txISBN.getText(), "O campo isbn aceita somente números"))
+               &&(Validador.somenteNumeros(txQtdPaginas.getText(), "O campo Quantidade de páginas aceita somente números"))
                ){
            
        

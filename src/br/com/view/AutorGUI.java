@@ -8,6 +8,7 @@ package br.com.view;
 
 import br.com.controller.AutorController;
 import br.com.model.Autor;
+import br.com.validador.Validador;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -219,6 +220,9 @@ public class AutorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        if((Validador.validaCampoVazio(txNome.getText(), "Nome não pode ser nulo!"))
+               ){
+        
         Autor a = new Autor();
         a.setNome(txNome.getText());
 
@@ -233,7 +237,7 @@ public class AutorGUI extends javax.swing.JFrame {
         }
 
         dispose();
-
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
 

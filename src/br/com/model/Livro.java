@@ -12,21 +12,20 @@ import javax.persistence.ManyToOne;
 public class Livro {
     @Id @GeneratedValue
     
-   /Campo obrigatório/
     private int codigo;
-    private int codigoAcervo; /Campo obrigatório/
+    private int codigoAcervo; 
     @Column(length = 60)
-    private String titulo; /Campo obrigatório/
+    private String titulo; 
     @ManyToOne
-    private Autor autor; /Campo obrigatório/
+    private Autor autor; 
     @ManyToOne
-    private Editora editora; /Campo obrigatório/
+    private Editora editora; 
      @ManyToOne
     private Colecao colecao;
     private int quantidadePagina;
      @Column(length = 13)
-    private String isbn; /Campo obrigatório/
-    private int exemplar; /Campo obrigatório/
+    private String isbn; 
+    private int exemplar; 
     private int ano;
     @Column(length = 60)
     private String tituloOriginal;

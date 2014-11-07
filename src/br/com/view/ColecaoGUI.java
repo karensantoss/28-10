@@ -8,6 +8,7 @@ package br.com.view;
 
 import br.com.controller.ColecaoController;
 import br.com.model.Colecao;
+import br.com.validador.Validador;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -216,7 +217,9 @@ public class ColecaoGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-     Colecao a = new Colecao();
+      if((Validador.validaCampoVazio(txNome.getText(), "Nome não pode ser nulo!"))
+               ){
+        Colecao a = new Colecao();
      a.setNome(txNome.getText());
      
      if(!txCodigo.getText().equals("")){
@@ -230,7 +233,7 @@ public class ColecaoGUI extends javax.swing.JFrame {
      }
      
      dispose();
-     
+    }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

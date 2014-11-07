@@ -367,7 +367,11 @@ public class ProfessorGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       if(Validador.validaCampoVazio(txCodigoMatricula1.getText(), "Código de Matrícula não pode ser nulo!")){
+       if((Validador.validaCampoVazio(txCodigoMatricula1.getText(), "Código de Matrícula não pode ser nulo!"))
+                      && (Validador.somenteNumeros(txCpf.getText(), "O campo Cpf aceita somente números"))
+               && (Validador.somenteNumeros(txRg.getText(), "O campo Rg aceita somente números"))
+               && (Validador.somenteNumeros(txTelefone.getText(), "O campo Telefone aceita somente números"))
+               ){
            
        
         Professor p = new Professor();
