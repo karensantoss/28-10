@@ -79,7 +79,7 @@ public class AssuntoGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/businessman111.png"))); // NOI18N
-        jLabel1.setText("Cadastro de Autor");
+        jLabel1.setText("Cadastro de Assunto");
 
         btSalvar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/salvar.png"))); // NOI18N
