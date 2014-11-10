@@ -1,15 +1,19 @@
 
 package br.com.model;
 
+import javax.persistence.ManyToOne;
+
 
 public class Dvd {
     
     private int codigo;
     private String titulo;
     private String subtitulo;
-    private String diretor;
+    @ManyToOne
+    private Diretor diretor;
+    @ManyToOne
+    private Assunto assunto;
     private int anoLancamento;
-    private String tituloOriginal;
     private String duracao;
     private String traducao;
     private String idioma;
@@ -38,11 +42,11 @@ public class Dvd {
         this.subtitulo = subtitulo;
     }
 
-    public String getDiretor() {
+    public Diretor getDiretor() {
         return diretor;
     }
 
-    public void setDiretor(String diretor) {
+    public void setDiretor(Diretor diretor) {
         this.diretor = diretor;
     }
 
@@ -53,15 +57,6 @@ public class Dvd {
     public void setAnoLancamento(int anoLancamento) {
         this.anoLancamento = anoLancamento;
     }
-
-    public String getTituloOriginal() {
-        return tituloOriginal;
-    }
-
-    public void setTituloOriginal(String tituloOriginal) {
-        this.tituloOriginal = tituloOriginal;
-    }
-
     public String getDuracao() {
         return duracao;
     }
@@ -85,5 +80,14 @@ public class Dvd {
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
+
+    public Assunto getAssunto() {
+        return assunto;
+    }
+
+    public void setAssunto(Assunto assunto) {
+        this.assunto = assunto;
+    }
+    
     
 }
