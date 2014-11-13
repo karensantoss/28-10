@@ -1,11 +1,14 @@
 
 package br.com.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
+@Entity
 public class Dvd {
-    
+    @Id @GeneratedValue
     private int codigo;
     private String titulo;
     private String subtitulo;

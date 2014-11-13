@@ -217,7 +217,7 @@ public class ColecaoGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-      if((Validador.validaCampoVazio(txNome.getText(), "Nome não pode ser nulo!"))
+      if((Validador.validaCampoVazio(txNome.getText().trim(), "Nome não pode ser nulo!"))
                ){
         Colecao a = new Colecao();
      a.setNome(txNome.getText());

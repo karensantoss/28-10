@@ -12,8 +12,8 @@ public class Emprestimo {
     private Livro livro;
     private Date dataEmprestimo;
     private Date dataDevolucao;
-    private String horaEmprestimo;
-    private String horaDevolucao;
+//    private String horaEmprestimo;
+//    private String horaDevolucao;
 
     public int getCodigo() {
         return codigo;
@@ -61,22 +61,6 @@ public class Emprestimo {
 
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
-    }
-
-    public String getHoraEmprestimo() {
-        return horaEmprestimo;
-    }
-
-    public void setHoraEmprestimo(String horaEmprestimo) {
-        this.horaEmprestimo = horaEmprestimo;
-    }
-
-    public String getHoraDevolucao() {
-        return horaDevolucao;
-    }
-
-    public void setHoraDevolucao(String horaDevolucao) {
-        this.horaDevolucao = horaDevolucao;
     }
     
 }

@@ -220,7 +220,7 @@ public class AssuntoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if((Validador.validaCampoVazio(txDescricao.getText(), "Descrição não pode ser nulo!"))
+        if((Validador.validaCampoVazio(txDescricao.getText().trim(), "Descrição não pode ser nulo!"))
                ){
         
         Assunto a = new Assunto();
