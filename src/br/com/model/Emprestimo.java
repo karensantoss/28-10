@@ -7,13 +7,14 @@ import java.util.Date;
 public class Emprestimo {
     
     private int codigo;
+    private String tipoPessoa;
     private String nome;
     private Dvd dvd;
     private Livro livro;
     private Date dataEmprestimo;
     private Date dataDevolucao;
-//    private String horaEmprestimo;
-//    private String horaDevolucao;
+    private String usuario;
+
 
     public int getCodigo() {
         return codigo;
@@ -62,5 +63,22 @@ public class Emprestimo {
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
+
+    public String getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public void setTipoPessoa(String tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
     
 }
