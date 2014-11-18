@@ -153,6 +153,8 @@ public class ProfessorGUI extends javax.swing.JFrame {
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setText("Código:");
 
@@ -330,7 +332,7 @@ public class ProfessorGUI extends javax.swing.JFrame {
                         .addGap(411, 411, 411)
                         .addComponent(btCancelar))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
@@ -370,11 +372,12 @@ public class ProfessorGUI extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
 
-        if((Validador.validaCampoVazio(txCodigoMatricula1.getText(), "Código de Matrícula não pode ser nulo!"))
-                      && (Validador.somenteNumeros(txCpf.getText().replaceAll("[^0-9]", ""), "O campo Cpf aceita somente números"))
-               && (Validador.somenteNumeros(txRg.getText(), "O campo Rg aceita somente números"))
-               && (Validador.somenteNumeros(txTelefone.getText(), "O campo Telefone aceita somente números"))
-               ){
+        if((Validador.validaCampoVazio(txCodigoMatricula1.getText().trim(), "Código de Matrícula não pode ser nulo!"))&&
+                (Validador.somenteNumeros(txCodigoMatricula1.getText().trim(), "Código de Matrícula aceita somente números"))
+                      && (Validador.somenteNumeros(txCpf.getText().replaceAll("[^0-9]", "").trim(), "O campo Cpf aceita somente números"))
+               && (Validador.somenteNumeros(txRg.getText().trim(), "O campo Rg aceita somente números"))
+               && (Validador.somenteNumeros(txTelefone.getText().replaceAll("[^0-9]", "").trim(), "O campo Telefone aceita somente números"))&&
+                (Validador.validaEmail(txEmail1.getText().trim())&&(Validador.somenteLetras(txNome.getText().trim(), "Campo aceita apenas letras, e não pode estar nulo")))){
            
        
         Professor p = new Professor();
@@ -418,7 +421,7 @@ public class ProfessorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-      txCodigo.setText("");
+
      txCodigoMatricula1.setText("");
      txNome.setText("");
      txDataNasc.setText("");

@@ -441,10 +441,19 @@ public class LivrosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txCodigoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       if((Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!"))
-               &&(Validador.somenteNumeros(txAno.getText(), "O campo ano aceita somente números"))
-               &&(Validador.somenteNumeros(txISBN.getText(), "O campo isbn aceita somente números"))
-               &&(Validador.somenteNumeros(txQtdPaginas.getText(), "O campo Quantidade de páginas aceita somente números"))
+       if((Validador.validaCampoVazio(txCodigoAcervo.getText().trim(), "Código acervo não pode ser nulo!"))
+               &&(Validador.somenteNumeros(txAno.getText().trim(), "O campo ano aceita somente números"))
+               &&(Validador.somenteNumeros(txISBN.getText().trim(), "O campo isbn aceita somente números"))
+               &&(Validador.somenteNumeros(txQtdPaginas.getText().trim(), "O campo Quantidade de páginas aceita somente números"))
+               &&(Validador.somenteLetras(txTitulo.getText().trim(), "O campo aceita somente letras"))
+               &&(Validador.validaCampoVazio(txTitulo.getText().trim(), "O campo não pode estar nulo"))
+               &&(Validador.somenteLetras(txTituloOriginal.getText().trim(), "O campo aceita somente letras"))
+               &&(Validador.validaCampoVazio(txAno.getText().trim(), "Campo não pode estar nulo"))
+               &&(Validador.validaCampoVazio(txISBN.getText().trim(), "O campo não pode estar nulo"))
+               &&(Validador.validaCampoVazio(txEdicao.getText().trim(), "O campo não pode estar nulo"))
+               &&(Validador.validaCampoVazio(txVersao.getText().trim(), "O campo não pode estar nulo"))
+               &&(Validador.validaCampoVazio(txLocal.getText().trim(), "O campo não pode estar nulo"))
+
                ){
            
        

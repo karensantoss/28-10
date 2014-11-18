@@ -364,7 +364,12 @@ public class DvdGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txCodigoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       
+       if((Validador.somenteLetras(txTitulo.getText().trim(), "O campo aceita somente letras"))
+               &&(Validador.validaCampoVazio(txTitulo.getText().trim(), "O campo não pode estar vazio"))
+               &&(Validador.somenteNumeros(txDuracao.getText().trim(), "O campo aceita somente números"))
+               &&(Validador.validaCampoVazio(txDuracao.getText().trim(), "O campo não pode estar nulo"))
+         
+               ){
            
        
         Dvd d = new Dvd();
@@ -392,7 +397,7 @@ public class DvdGUI extends javax.swing.JFrame {
        
        
        dispose();
-       
+       }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed

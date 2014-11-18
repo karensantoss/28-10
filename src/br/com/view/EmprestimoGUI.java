@@ -156,9 +156,11 @@
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Tipo de Locador:");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jRadioButton1.setText("Professor");
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jRadioButton3.setText("Aluno");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -356,10 +358,7 @@
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 585, Short.MAX_VALUE)
         );
 
         pack();

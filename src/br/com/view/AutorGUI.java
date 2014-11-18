@@ -220,7 +220,7 @@ public class AutorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if((Validador.validaCampoVazio(txNome.getText(), "Nome não pode ser nulo!"))
+        if((Validador.validaCampoVazio(txNome.getText().trim(), "Campo não pode ser nulo!"))
                ){
         
         Autor a = new Autor();
