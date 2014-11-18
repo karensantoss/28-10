@@ -9,6 +9,7 @@ package br.com.view;
 import br.com.controller.UsuarioController;
 import br.com.model.Usuario;
 import br.com.validador.Validador;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,6 +39,8 @@ public class UsuarioGUI extends javax.swing.JFrame {
         txCodigo.setText(String.valueOf(a.getCodigo()));
         txNome.setText(a.getNomeUsuario());
         txLogin.setText(a.getLogin());
+        txSenha.setText(a.getSenha());
+        txConfirmaSenha.setText(a.getConfirmaSenha());
         
     }
     
@@ -276,11 +279,22 @@ public class UsuarioGUI extends javax.swing.JFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if((Validador.validaCampoVazio(txNome.getText().trim(), "Campo não pode ser nulo!"))
                 &&(Validador.validaCampoVazio(txLogin.getText().trim(), "Campo não pode ser nulo!"))
+                &&(Validador.validaCampoVazio(txSenha.getText().trim(), "Senha Incorreta, Por favor digite uma senha!"))
+                &&(Validador.validaCampoVazio(txConfirmaSenha.getText().trim(), "Senha Incorreta, Por favor digite uma senha!"))
                ){
         
         Usuario a = new Usuario();
         a.setNomeUsuario(txNome.getText());
         a.setLogin(txLogin.getText());
+        a.setSenha(txSenha.getText());
+        a.setConfirmaSenha(txConfirmaSenha.getText());
+        
+        if(txSenha.getText().equals(txConfirmaSenha.getText())) {
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null,"As senhas não coincidem");
+        }
 
         if(!txCodigo.getText().equals("")){
             a.setCodigo(Integer.parseInt(txCodigo.getText()));
