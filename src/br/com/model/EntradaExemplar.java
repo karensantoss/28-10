@@ -13,7 +13,7 @@ public class EntradaExemplar {
     @Id @GeneratedValue
     
     private int codigo;
-    private String usuario;
+    private Usuario usuario;
     private String tipoExemplar;
     private String tipoExemplar2;
     private int quantidade;
@@ -31,13 +31,15 @@ public class EntradaExemplar {
         this.codigo = codigo;
     }
 
-    public String getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    
 
     public String getTipoExemplar() {
         return tipoExemplar;

@@ -10,7 +10,6 @@ public class Reserva {
     private Livro livro;
     private Dvd dvd;
     private Date dataReserva;
-    private String horaReserva;
 
     public int getCodigo() {
         return codigo;
@@ -44,12 +43,5 @@ public class Reserva {
         this.dataReserva = dataReserva;
     }
 
-    public String getHoraReserva() {
-        return horaReserva;
-    }
-
-    public void setHoraReserva(String horaReserva) {
-        this.horaReserva = horaReserva;
-    }
-    
+  
 }

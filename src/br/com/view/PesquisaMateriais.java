@@ -6,19 +6,17 @@
 
 package br.com.view;
 
-import br.com.controller.EntradaExemplarController;
-import br.com.model.EntradaExemplar;
+import br.com.controller.DvdController;
+import br.com.model.Dvd;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ListarEntradaExemplarGUI extends javax.swing.JFrame {
-    
+public class PesquisaMateriais extends javax.swing.JFrame {
 private JTable tabela = new JTable();
-
 private DefaultTableModel modelo = new DefaultTableModel();
 
-    public ListarEntradaExemplarGUI() {
+    public PesquisaMateriais() {
         initComponents();
         criaTabela();
         scrol.setViewportView(tabela);
@@ -39,8 +37,6 @@ private DefaultTableModel modelo = new DefaultTableModel();
         jPanel2 = new javax.swing.JPanel();
         scrol = new javax.swing.JScrollPane();
         btNovo = new javax.swing.JButton();
-        btEditar = new javax.swing.JButton();
-        btDeletar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txBuscaTitulo = new javax.swing.JTextField();
         btBuscaNome = new javax.swing.JButton();
@@ -65,7 +61,8 @@ private DefaultTableModel modelo = new DefaultTableModel();
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText(" Entrada de Exemplares");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/educative1.png"))); // NOI18N
+        jLabel1.setText("   Materiais");
 
         jPanel2.setBackground(new java.awt.Color(51, 110, 123));
         jPanel2.setPreferredSize(new java.awt.Dimension(503, 30));
@@ -83,28 +80,10 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
         btNovo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add58.png"))); // NOI18N
-        btNovo.setText("Novo");
+        btNovo.setText("Adicionar");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
-            }
-        });
-
-        btEditar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
-        btEditar.setText("Editar");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
-            }
-        });
-
-        btDeletar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/deletar.png"))); // NOI18N
-        btDeletar.setText("Deletar");
-        btDeletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDeletarActionPerformed(evt);
             }
         });
 
@@ -140,17 +119,12 @@ private DefaultTableModel modelo = new DefaultTableModel();
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txBuscaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btBuscaNome)))
+                                .addComponent(btBuscaNome))
+                            .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 348, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
@@ -171,10 +145,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
                 .addGap(18, 18, 18)
                 .addComponent(scrol, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btDeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btNovo)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -193,55 +164,28 @@ private DefaultTableModel modelo = new DefaultTableModel();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-         int linhaSelecionada = tabela.getSelectedRow();
-        if(linhaSelecionada >= 0) {
-            int idEntradaExemplar = (int) tabela.getValueAt(linhaSelecionada, 0);
-            EntradaExemplarGUI gui = new EntradaExemplarGUI (modelo, linhaSelecionada, idEntradaExemplar);
-            gui.setVisible(true);
-            
-            
-        }else{
-           JOptionPane.showMessageDialog(null,"É necessario selecionar um livro.");
-        }
-    }//GEN-LAST:event_btEditarActionPerformed
-
-    private void btDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletarActionPerformed
-      int linhaSelecionada = tabela.getSelectedRow();
-        if(linhaSelecionada >= 0) {
-            int idEntradaExemplar = (int) tabela.getValueAt(linhaSelecionada, 0);
-            EntradaExemplarController lc = new EntradaExemplarController();
-            if (lc.remover(idEntradaExemplar) == true) {
-            modelo.removeRow(linhaSelecionada);
-        }
-            
-        }else{
-           JOptionPane.showMessageDialog(null,"É necessario selecionar um livro.");
-        }
-    }//GEN-LAST:event_btDeletarActionPerformed
-
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-      EntradaExemplarGUI gui = new EntradaExemplarGUI(modelo);
+      DvdGUI gui = new DvdGUI(modelo);
       gui.setVisible(true);
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void txBuscaTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txBuscaTituloActionPerformed
-        EntradaExemplarController lc = new EntradaExemplarController();
+        DvdController lc = new DvdController();
        String Titulo = txBuscaTitulo.getText();
        modelo.setNumRows(0);
-       for (EntradaExemplar li: lc.PesquisarEntradaExemplarTitulo(Titulo)) {
-            modelo.addRow(new Object[] {li.getCodigo(),li.getCodigo(),li.getTipoExemplar()});
+       for (Dvd li: lc.PesquisarDvdTitulo(Titulo)) {
+            modelo.addRow(new Object[] {li.getCodigo(),li.getCodigo(),li.getTitulo() });
             
        }
             
     }//GEN-LAST:event_txBuscaTituloActionPerformed
 
     private void btBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscaNomeActionPerformed
-         EntradaExemplarController ac = new EntradaExemplarController();
+         DvdController ac = new DvdController();
        String Titulo = txBuscaTitulo.getText();
        modelo.setNumRows(0);
-       for (EntradaExemplar li: ac.PesquisarEntradaExemplarTitulo(Titulo)) {
-           modelo.addRow(new Object[] {li.getCodigo(),li.getCodigoAcervo(),li.getTitulo() });
+       for (Dvd li: ac.PesquisarDvdTitulo(Titulo)) {
+           modelo.addRow(new Object[] {li.getCodigo(),li.getCodigo(),li.getTitulo() });
        
        }
     }//GEN-LAST:event_btBuscaNomeActionPerformed
@@ -250,8 +194,6 @@ private DefaultTableModel modelo = new DefaultTableModel();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscaNome;
-    private javax.swing.JButton btDeletar;
-    private javax.swing.JButton btEditar;
     private javax.swing.JButton btNovo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -265,16 +207,16 @@ private DefaultTableModel modelo = new DefaultTableModel();
        private void criaTabela() {
         tabela = new JTable(modelo);
         modelo.addColumn("Código");
-        modelo.addColumn("Código de Acervo");
         modelo.addColumn("Título");
+        modelo.addColumn("Diretor");
         popularTabela();
         
     }
 
     private void popularTabela() {
-       EntradaExemplarController clc = new EntradaExemplarController();
-        for (EntradaExemplar li: clc.ListarEntradaExemplar()) {
-            modelo.addRow(new Object[] {li.getCodigo(),li.getCodigoAcervo(),li.getTitulo() });
+       DvdController clc = new DvdController();
+        for (Dvd d: clc.ListarDvd()) {
+            modelo.addRow(new Object[] {d.getCodigo(),d.getCodigo(),d.getDiretor()});
     }
 }
 }

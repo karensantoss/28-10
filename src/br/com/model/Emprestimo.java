@@ -7,13 +7,14 @@ import java.util.Date;
 public class Emprestimo {
     
     private int codigo;
-    private String tipoPessoa;
+    private String tipoPessoaP;
+    private String tipoPessoaA;
     private String nome;
     private Dvd dvd;
     private Livro livro;
     private Date dataEmprestimo;
     private Date dataDevolucao;
-    private String usuario;
+    private Usuario usuario;
 
 
     public int getCodigo() {
@@ -64,21 +65,33 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public String getTipoPessoa() {
-        return tipoPessoa;
+    public String getTipoPessoaP() {
+        return tipoPessoaP;
     }
 
-    public void setTipoPessoa(String tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
+    public void setTipoPessoaP(String tipoPessoaP) {
+        this.tipoPessoaP = tipoPessoaP;
     }
 
-    public String getUsuario() {
+    public String getTipoPessoaA() {
+        return tipoPessoaA;
+    }
+
+    public void setTipoPessoaA(String tipoPessoaA) {
+        this.tipoPessoaA = tipoPessoaA;
+    }
+
+   
+
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+   
     
     
 }
