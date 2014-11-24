@@ -226,11 +226,11 @@ private DefaultTableModel modelo = new DefaultTableModel();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void txBuscaTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txBuscaTituloActionPerformed
-        EntradaExemplarController lc = new EntradaExemplarController();
+        EntradaExemplarController ec = new EntradaExemplarController();
        String Titulo = txBuscaTitulo.getText();
        modelo.setNumRows(0);
-       for (EntradaExemplar li: lc.PesquisarEntradaExemplarTitulo(Titulo)) {
-            modelo.addRow(new Object[] {li.getCodigo(),li.getCodigo(),li.getTipoExemplar()});
+       for (EntradaExemplar ee: ec.PesquisarEntradaExemplarNomeExemplar(Titulo)) {
+            modelo.addRow(new Object[] {ee.getCodigo(),ee.getNomeExemplar(),ee.getDataAquisicao()});
             
        }
             
@@ -240,8 +240,8 @@ private DefaultTableModel modelo = new DefaultTableModel();
          EntradaExemplarController ac = new EntradaExemplarController();
        String Titulo = txBuscaTitulo.getText();
        modelo.setNumRows(0);
-       for (EntradaExemplar li: ac.PesquisarEntradaExemplarTitulo(Titulo)) {
-           modelo.addRow(new Object[] {li.getCodigo(),li.getCodigoAcervo(),li.getTitulo() });
+       for (EntradaExemplar li: ac.PesquisarEntradaExemplarNomeExemplar(Titulo)) {
+           modelo.addRow(new Object[] {li.getCodigo(),li.getNomeExemplar(),li.getDataAquisicao()});
        
        }
     }//GEN-LAST:event_btBuscaNomeActionPerformed
@@ -265,8 +265,8 @@ private DefaultTableModel modelo = new DefaultTableModel();
        private void criaTabela() {
         tabela = new JTable(modelo);
         modelo.addColumn("Código");
-        modelo.addColumn("Código de Acervo");
-        modelo.addColumn("Título");
+        modelo.addColumn("Nome do Exemplar");
+        modelo.addColumn("Data de aquisição");
         popularTabela();
         
     }
@@ -274,7 +274,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     private void popularTabela() {
        EntradaExemplarController clc = new EntradaExemplarController();
         for (EntradaExemplar li: clc.ListarEntradaExemplar()) {
-            modelo.addRow(new Object[] {li.getCodigo(),li.getCodigoAcervo(),li.getTitulo() });
+            modelo.addRow(new Object[] {li.getCodigo(),li.getNomeExemplar(),li.getDataAquisicao()});
     }
 }
 }

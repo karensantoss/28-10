@@ -1,7 +1,16 @@
 
 package br.com.view;
 
+import br.com.controller.EmprestimoController;
+import br.com.model.Emprestimo;
+import br.com.validador.Validador;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class EmprestimoGUI extends javax.swing.JFrame {
+    private int linhaSelecionada;
+    private DefaultTableModel modelo;
     
    public EmprestimoGUI(DefaultTableModel modelo) {
        this.modelo = modelo;
@@ -14,23 +23,15 @@ public class EmprestimoGUI extends javax.swing.JFrame {
        this.linhaSelecionada = linhaSelecionada;
        initComponents();
        
-       EmprestimoController lc = new EmprestimoController();
-       Emprestimo li = lc.pesquisarCodigo(idEmprestimo);
+       EmprestimoController ec = new EmprestimoController();
+       Emprestimo e = ec.pesquisarCodigo(idEmprestimo);
        
-       txCodigo.setText(String.valueOf(li.getCodigo()));
-       txCodigoAcervo.setText(String.valueOf(li.getCodigoAcervo()));
-       txTitulo.setText(li.getTitulo());
-       txQtdPaginas.setText(String.valueOf(li.getQuantidadePagina()));
-       txISBN.setText(li.getIsbn());
-       txExemplar.setText(String.valueOf(li.getExemplar()));
-       txAno.setText(String.valueOf(li.getAno()));
-       txTituloOriginal.setText(li.getTituloOriginal());
-       txVersao.setText(li.getVersao());
-       txEdicao.setText(li.getEdicao());
-       txLocal.setText(li.getLocal());
-        cbAutor.setSelectedItem(li.getAutor());
-       cbEditora.setSelectedItem(li.getEditora());
-       cbColecao.setSelectedItem(li.getColecao());
+       txCodigo.setText(String.valueOf(e.getCodigo()));
+       cbTipoPessoa.setSelectedItem(e.getTipoPessoa());
+       cbLocador.setSelectedItem(e.getLocador());
+       txDataDevolucao.setText(String.valueOf(e.getDataDevolucao()));
+       txDataEmprestimo.setText(String.valueOf(e.getDataEmprestimo()));
+      
     
        
    }
@@ -62,8 +63,6 @@ public class EmprestimoGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        rdProfessor = new javax.swing.JRadioButton();
-        rdAluno = new javax.swing.JRadioButton();
         cbLocador = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -74,6 +73,7 @@ public class EmprestimoGUI extends javax.swing.JFrame {
         scrol = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        cbTipoPessoa = new javax.swing.JComboBox();
         btLimpar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
 
@@ -133,23 +133,11 @@ public class EmprestimoGUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Usuário:");
 
+        txUsuario.setEditable(false);
         txUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Tipo de Locador:");
-
-        buttonGroup1.add(rdProfessor);
-        rdProfessor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        rdProfessor.setText("Professor");
-
-        buttonGroup1.add(rdAluno);
-        rdAluno.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        rdAluno.setText("Aluno");
-        rdAluno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdAlunoActionPerformed(evt);
-            }
-        });
 
         cbLocador.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -183,6 +171,9 @@ public class EmprestimoGUI extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Remover");
 
+        cbTipoPessoa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cbTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Professor", "Aluno" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -190,6 +181,18 @@ public class EmprestimoGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(scrol, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(10, 10, 10))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -204,13 +207,13 @@ public class EmprestimoGUI extends javax.swing.JFrame {
                             .addComponent(cbLocador, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(rdProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rdAluno)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                        .addComponent(jLabel4)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(cbTipoPessoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(33, 33, 33)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(txDataEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,24 +223,12 @@ public class EmprestimoGUI extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
                                     .addComponent(txDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(scrol, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(10, 10, 10))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -253,12 +244,10 @@ public class EmprestimoGUI extends javax.swing.JFrame {
                             .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rdAluno))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbTipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -306,13 +295,16 @@ public class EmprestimoGUI extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btLimpar)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btLimpar)))
+                        .addGap(0, 275, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,65 +340,59 @@ public class EmprestimoGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       if((Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!"))
-               &&(Validador.somenteNumeros(txAno.getText(), "O campo ano aceita somente números"))
-               &&(Validador.somenteNumeros(txISBN.getText(), "O campo isbn aceita somente números"))
-               &&(Validador.somenteNumeros(txQtdPaginas.getText(), "O campo Quantidade de páginas aceita somente números"))
-               ){
+//       if((Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!"))
+//               &&(Validador.somenteNumeros(txAno.getText(), "O campo ano aceita somente números"))
+//               &&(Validador.somenteNumeros(txISBN.getText(), "O campo isbn aceita somente números"))
+//               &&(Validador.somenteNumeros(txQtdPaginas.getText(), "O campo Quantidade de páginas aceita somente números"))
+//               ){
            
        
-        Emprestimo li = new Emprestimo();
-       li.setTitulo(txTitulo.getText());
-       li.setCodigoAcervo(Integer.valueOf(txCodigoAcervo.getText()));
-       li.setQuantidadePagina(Integer.valueOf(txQtdPaginas.getText()));
-       li.setIsbn(txISBN.getText());
-       li.setExemplar(Integer.valueOf(txExemplar.getText()));
-       li.setAno(Integer.valueOf(txAno.getText()));
-       li.setTituloOriginal(txTituloOriginal.getText());
-       li.setVersao(txVersao.getText());
-       li.setEdicao(txEdicao.getText());
-       li.setLocal(txLocal.getText());
-       li.setAutor((Autor)cbAutor.getSelectedItem());
-       li.setEditora((Editora)cbEditora.getSelectedItem());
-       li.setColecao((Colecao)cbColecao.getSelectedItem());
+        Emprestimo e = new Emprestimo();
+       
+        
+       e.setLocador((String) (cbLocador).getSelectedItem());
+       e.setTipoPessoa((String)cbTipoPessoa.getSelectedItem());
+
+        try{
+           String DataDevolucao = txDataDevolucao.getText();
+           e.setDataDevolucao(new SimpleDateFormat("dd/MM/yyyy").parse(DataDevolucao));
+       }catch(Exception h){
+           JOptionPane.showMessageDialog(null,"Data de Devoluçao no formato incorreto" +h.getMessage());
+       }
+        try{
+           String DataEmprestimo = txDataEmprestimo.getText();
+           e.setDataEmprestimo(new SimpleDateFormat("dd/MM/yyyy").parse(DataEmprestimo));
+        }catch(Exception f) {
+       
+           JOptionPane.showMessageDialog(null,"Data de Empréstimo no formato incorreto" +f.getMessage());
+       }
+
        
        
        if(!txCodigo.getText().equals("")){
-           li.setCodigo(Integer.parseInt(txCodigo.getText()));
+           e.setCodigo(Integer.parseInt(txCodigo.getText()));
            modelo.removeRow(linhaSelecionada);
        }
-       EmprestimoController lc = new EmprestimoController();
-       Emprestimo liSalvo = lc.salvar(li);
-       if(liSalvo != null){
+       EmprestimoController ec = new EmprestimoController();
+       Emprestimo eSalvo = ec.salvar(e);
+       if(eSalvo != null){
            modelo.addRow(new Object[] { 
-               liSalvo.getCodigo(),liSalvo.getCodigoAcervo(),liSalvo.getTitulo()});
+               eSalvo.getCodigo(),eSalvo.getTipoPessoa(),eSalvo.getLocador()});
        }
        
        
        dispose();
-       }
+       
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
       txCodigo.setText("");
-      txCodigoAcervo.setText("");
-      txTitulo.setText("");
-      cbAutor.setSelectedItem("");
-      cbEditora.setSelectedItem("");
-      cbColecao.setSelectedItem("");
-      txQtdPaginas.setText("");
-      txISBN.setText("");
-      txExemplar.setText("");
-      txAno.setText("");
-      txTituloOriginal.setText("");
-      txVersao.setText("");
-      txEdicao.setText("");
-      txLocal.setText("");
+      txDataDevolucao.setText("");
+      txDataEmprestimo.setText("");
+      cbLocador.setSelectedItem("");
+      cbTipoPessoa.setSelectedItem("");
+      
     }//GEN-LAST:event_btLimparActionPerformed
-
-    private void rdAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdAlunoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdAlunoActionPerformed
 
     private void txCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txCodigoActionPerformed
         // TODO add your handling code here:
@@ -425,6 +411,7 @@ public class EmprestimoGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.ButtonGroup buttonGroup7;
     private javax.swing.JComboBox cbLocador;
+    private javax.swing.JComboBox cbTipoPessoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -440,8 +427,6 @@ public class EmprestimoGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton rdAluno;
-    private javax.swing.JRadioButton rdProfessor;
     private javax.swing.JScrollPane scrol;
     private javax.swing.JTextField txCodigo;
     private javax.swing.JFormattedTextField txDataDevolucao;

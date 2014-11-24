@@ -71,7 +71,6 @@ public class DisciplinaGUI extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/businessman111.png"))); // NOI18N
         jLabel1.setText("Cadastro de Disciplinas");
 
         btSalvar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N

@@ -2,18 +2,23 @@
 package br.com.model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-
+@Entity
 public class Emprestimo {
-    
+    @Id
+    @GeneratedValue
     private int codigo;
-    private String tipoPessoaP;
-    private String tipoPessoaA;
-    private String nome;
-    private Dvd dvd;
-    private Livro livro;
+    private String tipoPessoa;
+    private String locador;
+//    private Dvd dvd;
+//    private Livro livro;
     private Date dataEmprestimo;
     private Date dataDevolucao;
+    @ManyToOne
     private Usuario usuario;
 
 
@@ -25,29 +30,29 @@ public class Emprestimo {
         this.codigo = codigo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getLocador() {
+        return locador;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setLocador(String locador) {
+        this.locador = locador;
     }
 
-    public Dvd getDvd() {
-        return dvd;
-    }
-
-    public void setDvd(Dvd dvd) {
-        this.dvd = dvd;
-    }
-
-    public Livro getLivro() {
-        return livro;
-    }
-
-    public void setLivro(Livro livro) {
-        this.livro = livro;
-    }
+//    public Dvd getDvd() {
+//        return dvd;
+//    }
+//
+//    public void setDvd(Dvd dvd) {
+//        this.dvd = dvd;
+//    }
+//
+//    public Livro getLivro() {
+//        return livro;
+//    }
+//
+//    public void setLivro(Livro livro) {
+//        this.livro = livro;
+//    }
 
     public Date getDataEmprestimo() {
         return dataEmprestimo;
@@ -65,23 +70,15 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public String getTipoPessoaP() {
-        return tipoPessoaP;
+    public String getTipoPessoa() {
+        return tipoPessoa;
     }
 
-    public void setTipoPessoaP(String tipoPessoaP) {
-        this.tipoPessoaP = tipoPessoaP;
+    public void setTipoPessoa(String tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
     }
 
-    public String getTipoPessoaA() {
-        return tipoPessoaA;
-    }
-
-    public void setTipoPessoaA(String tipoPessoaA) {
-        this.tipoPessoaA = tipoPessoaA;
-    }
-
-   
+    
 
     public Usuario getUsuario() {
         return usuario;

@@ -1,18 +1,21 @@
 
 package br.com.view;
 
+import br.com.controller.EntradaExemplarController;
+import br.com.model.EntradaExemplar;
+import javax.swing.table.DefaultTableModel;
+
 
 public class EntradaExemplarGUI extends javax.swing.JFrame {
 
-//   
+private int linhaSelecionada;
+    private DefaultTableModel modelo;
     
     
     public EntradaExemplarGUI(DefaultTableModel modelo) {
         this.modelo = modelo;
         initComponents();
-       carregarComboAutor();
-        carregarComboEditora();
-        carregarComboColecao();
+     
     }
 
    public EntradaExemplarGUI(DefaultTableModel modelo, int linhaSelecionada, int idEntradaExemplar) {
@@ -20,26 +23,16 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
        this.linhaSelecionada = linhaSelecionada;
        initComponents();
        
-       EntradaExemplarController lc = new EntradaExemplarController();
-       EntradaExemplar li = lc.pesquisarCodigo(idEntradaExemplar);
+       EntradaExemplarController ec = new EntradaExemplarController();
+       EntradaExemplar ee = ec.pesquisarCodigo(idEntradaExemplar);
        
-      carregarComboAutor();
-       carregarComboEditora();
-       carregarComboColecao();
-       txCodigo.setText(String.valueOf(li.getCodigo()));
-       txCodigoAcervo.setText(String.valueOf(li.getCodigoAcervo()));
-       txTitulo.setText(li.getTitulo());
-       txQtdPaginas.setText(String.valueOf(li.getQuantidadePagina()));
-       txISBN.setText(li.getIsbn());
-       txExemplar.setText(String.valueOf(li.getExemplar()));
-       txAno.setText(String.valueOf(li.getAno()));
-       txTituloOriginal.setText(li.getTituloOriginal());
-       txVersao.setText(li.getVersao());
-       txEdicao.setText(li.getEdicao());
-       txLocal.setText(li.getLocal());
-        cbAutor.setSelectedItem(li.getAutor());
-       cbEditora.setSelectedItem(li.getEditora());
-       cbColecao.setSelectedItem(li.getColecao());
+       txCodigo.setText(String.valueOf(ee.getCodigo()));
+       txObservacao.setText(ee.getObservacao());
+       txQuantidade.setText(String.valueOf(ee.getQuantidade()));
+       txDataEntrada.setText(String.valueOf(ee.getDataAquisicao()));
+       cbTipoExemplar.setSelectedItem(ee.getTipoExemplar());
+       cbOrigem.setSelectedItem(ee.getOrigem());
+       cbNomeExemplar.setSelectedItem(ee.getNomeExemplar());
     
        
    }
@@ -65,18 +58,17 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbNomeExemplar = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txQuantidade = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txDataEntrada = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbOrigem = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txObservacao = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        cbTipoExemplar = new javax.swing.JComboBox();
         btLimpar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
 
@@ -141,25 +133,18 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Tipo de Exemplar:");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jRadioButton1.setText("Livros");
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("DVD's");
-
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cbNomeExemplar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Quantidade:");
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txQuantidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setText("Data:");
+        jLabel7.setText("Data de Aquisição:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txDataEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -167,16 +152,19 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Origem:");
 
-        jComboBox2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Doação", "Envio Gered", "Outros" }));
+        cbOrigem.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cbOrigem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Doação", "Envio Gered", "Outros" }));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Observações:");
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txObservacao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setText("Nome do Exemplar:");
+
+        cbTipoExemplar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cbTipoExemplar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Livros", "DVD's" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -186,8 +174,10 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(txObservacao)
+                        .addContainerGap())
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -195,36 +185,27 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
                                 .addGap(50, 50, 50)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(cbTipoExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField2))
+                                    .addComponent(txQuantidade))
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txDataEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(41, 41, 41)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel9))
-                        .addGap(0, 70, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton3)
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(31, 31, 31)))
-                        .addContainerGap())))
+                                    .addComponent(cbOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(cbNomeExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 20, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,42 +213,35 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton3)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)))
-                .addGap(11, 11, 11)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTipoExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbNomeExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txDataEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addComponent(txObservacao, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -301,7 +275,7 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -312,8 +286,8 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -348,60 +322,47 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txCodigoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-       if((Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!"))
-               &&(Validador.somenteNumeros(txAno.getText(), "O campo ano aceita somente números"))
-               &&(Validador.somenteNumeros(txISBN.getText(), "O campo isbn aceita somente números"))
-               &&(Validador.somenteNumeros(txQtdPaginas.getText(), "O campo Quantidade de páginas aceita somente números"))
-               ){
-           
+//       if((Validador.validaCampoVazio(txCodigoAcervo.getText(), "Código acervo não pode ser nulo!"))
+//               &&(Validador.somenteNumeros(txAno.getText(), "O campo ano aceita somente números"))
+//               &&(Validador.somenteNumeros(txISBN.getText(), "O campo isbn aceita somente números"))
+//               &&(Validador.somenteNumeros(txQtdPaginas.getText(), "O campo Quantidade de páginas aceita somente números"))
+//               ){
+//           
        
-        EntradaExemplar li = new EntradaExemplar();
-       li.setTitulo(txTitulo.getText());
-       li.setCodigoAcervo(Integer.valueOf(txCodigoAcervo.getText()));
-       li.setQuantidadePagina(Integer.valueOf(txQtdPaginas.getText()));
-       li.setIsbn(txISBN.getText());
-       li.setExemplar(Integer.valueOf(txExemplar.getText()));
-       li.setAno(Integer.valueOf(txAno.getText()));
-       li.setTituloOriginal(txTituloOriginal.getText());
-       li.setVersao(txVersao.getText());
-       li.setEdicao(txEdicao.getText());
-       li.setLocal(txLocal.getText());
-       li.setAutor((Autor)cbAutor.getSelectedItem());
-       li.setEditora((Editora)cbEditora.getSelectedItem());
-       li.setColecao((Colecao)cbColecao.getSelectedItem());
-       
+        EntradaExemplar ee = new EntradaExemplar();
+  
+       ee.setQuantidade(Integer.valueOf(txQuantidade.getText()));
+       ee.setObservacao(txObservacao.getText());
+       ee.setTipoExemplar((String)cbTipoExemplar.getSelectedItem());
+       ee.setOrigem((String)cbOrigem.getSelectedItem());
+       ee.setNomeExemplar((String)cbNomeExemplar.getSelectedItem());       
        
        if(!txCodigo.getText().equals("")){
-           li.setCodigo(Integer.parseInt(txCodigo.getText()));
+           ee.setCodigo(Integer.parseInt(txCodigo.getText()));
            modelo.removeRow(linhaSelecionada);
        }
-       EntradaExemplarController lc = new EntradaExemplarController();
-       EntradaExemplar liSalvo = lc.salvar(li);
-       if(liSalvo != null){
+       EntradaExemplarController ec = new EntradaExemplarController();
+       EntradaExemplar eSalvo = ec.salvar(ee);
+       if(eSalvo != null){
            modelo.addRow(new Object[] { 
-               liSalvo.getCodigo(),liSalvo.getCodigoAcervo(),liSalvo.getTitulo()});
+               eSalvo.getCodigo(),eSalvo.getNomeExemplar(),eSalvo.getDataAquisicao()});
        }
        
        
        dispose();
-       }
+       
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
       txCodigo.setText("");
-      txCodigoAcervo.setText("");
-      txTitulo.setText("");
-      cbAutor.setSelectedItem("");
-      cbEditora.setSelectedItem("");
-      cbColecao.setSelectedItem("");
-      txQtdPaginas.setText("");
-      txISBN.setText("");
-      txExemplar.setText("");
-      txAno.setText("");
-      txTituloOriginal.setText("");
-      txVersao.setText("");
-      txEdicao.setText("");
-      txLocal.setText("");
+      txQuantidade.setText("");
+      txObservacao.setText("");
+      cbNomeExemplar.setSelectedItem("");
+      cbOrigem.setSelectedItem("");
+      cbTipoExemplar.setSelectedItem("");
+      txDataEntrada.setText("");
+ 
+      
     }//GEN-LAST:event_btLimparActionPerformed
 
   
@@ -410,9 +371,9 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JComboBox cbNomeExemplar;
+    private javax.swing.JComboBox cbOrigem;
+    private javax.swing.JComboBox cbTipoExemplar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -427,11 +388,10 @@ public class EntradaExemplarGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txCodigo;
+    private javax.swing.JFormattedTextField txDataEntrada;
+    private javax.swing.JTextField txObservacao;
+    private javax.swing.JTextField txQuantidade;
     private javax.swing.JTextField txUsuario;
     // End of variables declaration//GEN-END:variables
 

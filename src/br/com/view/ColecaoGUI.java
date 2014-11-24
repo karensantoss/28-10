@@ -80,7 +80,6 @@ public class ColecaoGUI extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/living1.png"))); // NOI18N
         jLabel1.setText("Cadastro de Coleção");
 
         btSalvar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N

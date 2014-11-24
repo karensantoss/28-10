@@ -114,7 +114,6 @@ public class ProfessorGUI extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/educative1.png"))); // NOI18N
         jLabel1.setText(" Cadastro de Professor");
 
         jPanel2.setBackground(new java.awt.Color(51, 110, 123));

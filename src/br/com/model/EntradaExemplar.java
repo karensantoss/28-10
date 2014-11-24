@@ -13,9 +13,8 @@ public class EntradaExemplar {
     @Id @GeneratedValue
     
     private int codigo;
-    private Usuario usuario;
+//    private Usuario usuario;
     private String tipoExemplar;
-    private String tipoExemplar2;
     private int quantidade;
     @Temporal(TemporalType.DATE)
     private Date dataAquisicao;
@@ -31,13 +30,13 @@ public class EntradaExemplar {
         this.codigo = codigo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+//    public Usuario getUsuario() {
+//        return usuario;
+//    }
+//
+//    public void setUsuario(Usuario usuario) {
+//        this.usuario = usuario;
+//    }
 
     
 
@@ -49,14 +48,7 @@ public class EntradaExemplar {
         this.tipoExemplar = tipoExemplar;
     }
 
-    public String getTipoExemplar2() {
-        return tipoExemplar2;
-    }
-
-    public void setTipoExemplar2(String tipoExemplar2) {
-        this.tipoExemplar2 = tipoExemplar2;
-    }
-
+  
     public int getQuantidade() {
         return quantidade;
     }
